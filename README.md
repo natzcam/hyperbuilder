@@ -1,6 +1,6 @@
 # hyperbuilder
 
-DSL-style builder tool for generating hyperschema, hyperdb and hyperdispatch specs. Favors terseness over flexibility.
+DSL-style builder tool for defining hyperschema, hyperdb and hyperdispatch specs. Favors terseness over flexibility.
 
 ```js
 const { schema, collection, dispatch } = require("./index.js")("./spec");
@@ -36,10 +36,9 @@ dispatch("@hello/change-address", (d) => {
 Conventions & patterns
 ----------------------
 
-- Namespaces: use `@namespace/name` to place items in a namespace. The builder will create the namespace automatically.
-- 1:1 collection-schema: each `collection("@ns/foo")` creates a matching
-	`@ns/foo` schema used by the collection.
+- Define your schemas, collections and dispatch fully namespaced. The builder will create the namespace automatically.
+- You can define the schema for a collection inline. The builder will create the schema using the same name.
 - Structs: `s.struct(name, "@ns/other")` references an existing schema FQN;
 	`s.struct(name, (sub) => { ... })` creates a nested inline schema.
-- Compact schemas: schemas are compact by default (see `index.js` for details).
+- Schemas are not compact by default. Use `schema.compact(true)` otherwise.
 
