@@ -1,13 +1,37 @@
 # hyperbuilder
 
-Small builder for generating hyperschema and hyperdb specs. Favors terseness over flexibility.
+DSL-style builder tool for generating hyperschema, hyperdb and hyperdispatch specs. Favors terseness over flexibility.
 
-This repository provides a tiny DSL-style builder that lets you declare
-schemas, collections and dispatch (RPC) request types in JavaScript and
-generates ready-to-use artifacts under `spec/`:
+```js
+const { schema, collection, dispatch } = require("./index.js")("./spec");
 
-- `spec/hyperschema/` — compiled hyperschema runtime encoders and `schema.json`.
-- `spec/hyperdb/` — compiled hyperdb collection bindings and `db.json`.
+// define a standalone schema
+schema("@hello/full-name", (s) => {
+  s.string("first-name");
+  s.string("last-name");
+});
+
+// create a collection with inline schema
+collection("@hello/users", (c) => {
+  c.key("id")
+  c.uint("id");
+  c.uint("age");
+  c.struct("name", "@hello/full-name"); // struct with schema reference
+  c.struct("address", (s) => { // struct with nested inline schema (@hello/users/address)
+    s.string("city");
+    s.string("country");
+  });
+});
+
+// dispatch with schema reference
+dispatch("@hello/change-name", "@hello/full-name");
+
+// dispatch with inline schema
+dispatch("@hello/change-address", (d) => {
+  d.string("city");
+  d.string("country");
+});
+```
 
 Conventions & patterns
 ----------------------
