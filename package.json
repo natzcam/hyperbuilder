@@ -1,0 +1,36 @@
+{
+  "name": "hyperbuilder",
+  "version": "0.1.0",
+  "description": "hyperdb builder",
+  "keywords": [
+    "hyperdb",
+    "builder"
+  ],
+  "license": "ISC",
+  "author": "natzcam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "imports": {
+    "fs": {
+      "bare": "bare-fs",
+      "default": "fs"
+    },
+    "process": {
+      "bare": "bare-process",
+      "default": "process"
+    },
+    "path": {
+      "bare": "bare-path",
+      "default": "path"
+    }
+  },
+  "dependencies": {
+    "bare-process": "^4.2.2",
+    "hyperdb": "^5.0.1",
+    "hyperdispatch": "^1.4.4",
+    "hyperschema": "^1.19.1"
+  }
+}
