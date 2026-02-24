@@ -9,7 +9,7 @@ npm install hyperbuilder --save-dev
 
 
 ```js
-const { schema, collection, dispatch } = require("./index.js")("./spec");
+const { schema, collection, dispatch } = require("hyperbuilder")("./spec");
 
 // define a standalone schema
 schema("@hello/full-name", (s) => {
