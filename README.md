@@ -2,6 +2,12 @@
 
 DSL-style builder tool for defining [hyperschema](https://github.com/holepunchto/hyperschema), [hyperdb](https://github.com/holepunchto/hyperdb) and [hyperdispatch](https://github.com/holepunchto/hyperdispatch) specs. Favors terseness over flexibility.
 
+
+```
+npm install hyperbuilder --save-dev
+```
+
+
 ```js
 const { schema, collection, dispatch } = require("./index.js")("./spec");
 
